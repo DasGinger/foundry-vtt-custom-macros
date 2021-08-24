@@ -1,18 +1,13 @@
 const fs = require('fs');
 const url = require('url');
-const sleep = require('sleep');
 const fileDownload = require('js-file-download');
 const https = require('https');
 const request = require('request');
 const _cliProgress = require('cli-progress');
-const axios = require('axios');
-const homedir = require('os').homedir();
 const path = require('path');
-const { time } = require('console');
 const AdmZip = require('adm-zip');
 const args = process.argv;
 const foundryDownloadURL = args[2];
-console.log(foundryDownloadURL);
 const getUrl = new URL(foundryDownloadURL);
 
 // URL of the image
@@ -61,7 +56,7 @@ let downloadFileNew = (url, filename, callback) => {
     });
 }
 
-function parseUrlQuery(urlStr) {
+let parseUrlQuery = (urlStr) => {
     let query = urlStr.split('?')[1];
     let mapping = {};
     query.split('&').forEach((part) => {
@@ -78,13 +73,13 @@ function parseUrlQuery(urlStr) {
     return mapping;
 }
 
-function handleZipFile(filename, targetDir) {
+let handleZipFile = (filename, targetDir) => {
     let zipFile = new AdmZip(filename);
     zipFile.extractAllTo(targetDir, true);
     console.log(`${filename} has been extracted to ${targetDir}`);
 }
 
-function deleteFile(path) {
+let deleteFile = (path) => {
     fs.unlink(path);
 }
 
