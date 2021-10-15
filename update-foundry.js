@@ -90,6 +90,7 @@ let deleteFile = (path) => {
 // Send GET request to getUrl then save it locally in the project file
 try {
     let file = downloadFileNew(foundryDownloadURL, filename, () => {});
+    handleZipFile(filename, pathStr);
     deleteFile(`{filename}`);
 }
 catch(err) {
