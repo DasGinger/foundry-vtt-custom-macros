@@ -47,6 +47,7 @@ let downloadFileNew = (url, filename, callback) => {
     file.on('finish', () => {
         progressBar.stop();
         file.close(callback);
+        handleZipFile(file, pathStr);
     });
 
     file.on('error', (err) => {
@@ -90,7 +91,6 @@ let deleteFile = (path) => {
 // Send GET request to getUrl then save it locally in the project file
 try {
     let file = downloadFileNew(foundryDownloadURL, filename, () => {});
-    handleZipFile(file, pathStr);
     deleteFile(`{filename}`);
 }
 catch(err) {
