@@ -74,9 +74,13 @@ let parseUrlQuery = (urlStr) => {
 }
 
 let handleZipFile = (filename, targetDir) => {
-    let zipFile = new AdmZip(filename);
-    zipFile.extractAllTo(targetDir, true);
-    console.log(`${filename} has been extracted to ${targetDir}`);
+    try{
+        let zipFile = new AdmZip(filename);
+        zipFile.extractAllTo(targetDir, true);
+        console.log(`${filename} has been extracted to ${targetDir}`);
+    } catch(e) {
+        console.log(e);
+    }
 }
 
 let deleteFile = (path) => {
