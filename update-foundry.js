@@ -47,7 +47,7 @@ let downloadFileNew = (url, filename, callback) => {
     file.on('finish', () => {
         progressBar.stop();
         file.close(callback);
-        handleZipFile(file, pathStr);
+        handleZipFile(filename, pathStr);
     });
 
     file.on('error', (err) => {
