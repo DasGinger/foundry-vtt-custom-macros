@@ -41,7 +41,7 @@ let downloadFileNew = (url, filename, callback) => {
     .on('error', (err) => {
         fs.unlink(filename);
         progressBar.stop();
-        return callback(err.message);
+        return callback(err);
     });
 
     file.on('finish', () => {
@@ -53,7 +53,7 @@ let downloadFileNew = (url, filename, callback) => {
     file.on('error', (err) => {
         fs.unlink(filename); 
         progressBar.stop();
-        return callback(err.message);
+        return callback(err);
     });
 }
 
